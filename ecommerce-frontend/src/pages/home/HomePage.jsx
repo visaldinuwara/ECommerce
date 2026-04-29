@@ -2,17 +2,18 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Header } from '../../components/Header';
 import { products } from '../../../../starting-code/data/products';
-import {ProductsGrid} from './ProductsGrid'
+import { ProductsGrid } from './ProductsGrid'
 import './HomePage.css';
 
-export function HomePage({cart}) {
+export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/products')
-      .then((response) => {
-        setProducts(response.data);
-      });
+    const getHomeData = async () => {
+      const response = await axios.get('/api/products');
+      setProducts(response.data);
+    };
+    getHomeData();
   }, []);
   return (
     <>
