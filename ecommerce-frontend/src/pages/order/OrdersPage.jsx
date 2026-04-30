@@ -1,8 +1,8 @@
-import { Header } from '../components/Header';
+import { Header } from '../../components/Header';
 import axios from 'axios';
-import { useState, useEffect,Fragment} from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import dayjs from 'dayjs';
-import { formatMoney } from '../utils/money';
+import { formatMoney } from '../../utils/money';
 import './OrdersPage.css';
 
 export function OrdersPage({ cart }) {
@@ -27,7 +27,7 @@ export function OrdersPage({ cart }) {
           {orders.map((order) => {
             return (
               <>
-                <div key={order.id} className="order-container">
+                <div className="order-container">
                   <div className="order-header">
                     <div className="order-header-left-section">
                       <div className="order-date">
