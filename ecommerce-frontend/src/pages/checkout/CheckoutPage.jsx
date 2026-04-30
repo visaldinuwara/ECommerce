@@ -14,7 +14,7 @@ export function CheckoutPage({ cart }) {
     const fetchCheckOutData = async () => {
       let response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
       setDeliveryOptions(response.data);
-      response = awaitaxios.get('/api/payment-summary')
+      response = awaitaxios.get('/api/payment-summary');
       setPaymentSummary(response.data);
     }
     fetchCheckOutData();
@@ -47,7 +47,7 @@ export function CheckoutPage({ cart }) {
         <div className="page-title">Review your order</div>
 
         <div className="checkout-grid">
-          <OrderSummary cart={cart} deliveryOptions={deliveryOptions} />
+          <OrderSummary cart={cart} deliveryOptions={deliveryOptions} paymentSummary={paymentSummary} />
         </div>
       </div>
     </>

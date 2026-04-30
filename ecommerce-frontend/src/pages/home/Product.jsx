@@ -1,10 +1,26 @@
-import {formatMoney} from '../../utils/money';
-export function ProductsGrid({products}) {
+import { useState } from 'react';
+import axios from 'axios';
+import { formatMoney } from '../../utils/money';
+
+export function Product({ products, loadCart }) {
+
+  const [quantity, setQuantity] = useState(1);
+  const addToCart = async () => {
+    await axios.post('/api/cart-items', {
+      productId: product.id,
+      quantity
+    });
+    await loadCart();
+  };
+  const selectQuantity=(event) => {
+                const quantitySelected = Number(event.target.value);
+                setQuantity(quantitySelected);
+              };
   return (
     <div className="products-grid">
       {products.map((product) => {
         return (
-          <div key={product.id} className="product-container">
+          <div className="product-container">
             <div className="product-image-container">
               <img className="product-image"
                 src={product.image} />
@@ -27,7 +43,7 @@ export function ProductsGrid({products}) {
             </div>
 
             <div className="product-quantity-container">
-              <select>
+              <select value={quantity} onChange={selectQuantity}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -48,12 +64,13 @@ export function ProductsGrid({products}) {
               Added
             </div>
 
-            <button className="add-to-cart-button button-primary">
+            <button className="add-to-cart-button button-primary"
+              onClick={addToCart}>
               Add to Cart
             </button>
           </div>
         );
       })}
     </div>
-  )
+  );
 }
