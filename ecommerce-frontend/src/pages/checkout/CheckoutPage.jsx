@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { OrderSummary } from './OrderSummery';
 
-export function CheckoutPage({ cart }) {
+export function CheckoutPage({ cart ,loadCart}) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
 
@@ -18,7 +18,7 @@ export function CheckoutPage({ cart }) {
       setPaymentSummary(response.data);
     }
     fetchCheckOutData();
-  }, []);
+  }, [cart]);
   return (
     <>
       <title>Checkout</title>
@@ -47,7 +47,7 @@ export function CheckoutPage({ cart }) {
         <div className="page-title">Review your order</div>
 
         <div className="checkout-grid">
-          <OrderSummary cart={cart} deliveryOptions={deliveryOptions} paymentSummary={paymentSummary} />
+          <OrderSummary cart={cart} deliveryOptions={deliveryOptions} paymentSummary={paymentSummary} loadCart={loadCart}/>
         </div>
       </div>
     </>
